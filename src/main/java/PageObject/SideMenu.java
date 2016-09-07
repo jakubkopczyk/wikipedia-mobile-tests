@@ -21,10 +21,23 @@ public class SideMenu extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.CheckedTextView[@text='Nearby']")
     private MobileElement nearbyBtn;
 
+    @AndroidFindBy(xpath = "//android.widget.CheckedTextView[@text='Random']")
+    private MobileElement randomBtn;
+
+    @AndroidFindBy(xpath = "//android.widget.CheckedTextView[@text='Settings']")
+    private MobileElement settingstn;
+
+    @AndroidFindBy(xpath = "//android.widget.CheckedTextView[@text='Support Wikipedia']")
+    private MobileElement supportWikipediaBtn;
+
     public SideMenu(AppiumDriver driver){
         super(driver);
     }
 
+    public void openHistory(){}
+    public void openReadingLists(){}
+    public void openNearby(){}
+    public void openRandomArticle(){}
 
 
 }

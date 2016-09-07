@@ -9,6 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public abstract class BasePage {
     protected final AppiumDriver driver;
     public BasePage(AppiumDriver driver){
@@ -25,8 +27,15 @@ public abstract class BasePage {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    public void waitForElements(List<MobileElement> elements){
+        WebDriverWait wait = new WebDriverWait(driver,25);
+        wait.until(ExpectedConditions.visibilityOfAllElements(elements);
+        //TODO cast MobileElement to WebElement
+    }
+
     protected void takeScreenShot(){
         driver.getScreenshotAs(OutputType.BASE64);
     }
+    private void back(){driver.navigate().back();}
 
 }

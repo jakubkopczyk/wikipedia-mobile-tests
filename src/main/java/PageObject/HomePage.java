@@ -27,5 +27,7 @@ public class HomePage extends BasePage {
         menuBtn.click();
         return new SideMenu(driver);
     }
-
+    public void openFirstNews(){}
+    public void openFirstFeaturedArticle(){}
+    public void openFirstTrendingArticle(){}
 }
