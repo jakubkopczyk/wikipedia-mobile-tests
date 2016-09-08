@@ -14,5 +14,13 @@ public class MultiLanguageArticlePage extends ArticleBasePage {
     @AndroidFindBy(xpath = "//*[@content-desc='Apple Inc.']")
     private MobileElement appleHyperlink;
 
+    @AndroidFindBy(id = "org.wikipedia:id/view_article_header_text")
+    private MobileElement articleHeader;
+
     public void openLinkToArticle(){}
+
+    public String returnArticleHeader(){
+        waitForElement(articleHeader);
+        return returnText(articleHeader);
+    }
 }

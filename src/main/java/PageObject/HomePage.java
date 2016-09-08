@@ -13,9 +13,15 @@ public class HomePage extends BasePage {
     private MobileElement pageTitle;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='In the news']")
-    private MobileElement newsTitle;
+    private MobileElement newsSectionTitle;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Featured article']")
+    private MobileElement featuredArticleSectionTitle;
+
+    @AndroidFindBy(id = "org.wikipedia:id/view_featured_article_card_image")
+    private MobileElement featuredArticleImage;
+
+    @AndroidFindBy(id = "org.wikipedia:id/view_featured_article_card_article_title")
     private MobileElement featuredArticleTitle;
 
     public HomePage(AppiumDriver driver){
@@ -28,6 +34,18 @@ public class HomePage extends BasePage {
         return new SideMenu(driver);
     }
     public void openFirstNews(){}
-    public void openFirstFeaturedArticle(){}
+    public MultiLanguageArticlePage openFirstFeaturedArticle() {
+        waitForElement(featuredArticleTitle);
+        featuredArticleTitle.click();
+        return new MultiLanguageArticlePage(driver);
+    }
     public void openFirstTrendingArticle(){}
+
+    public String returnFeaturedArticleTitle() throws InterruptedException {
+        waitForElement(pageTitle);
+        swipe(Swipe_directions.BOTTOM);
+        Thread.sleep(1000);
+        waitForElement(featuredArticleTitle);
+        return returnText(featuredArticleTitle);
+    }
 }
