@@ -22,21 +22,24 @@ public class SearchPage extends BasePage {
         super(driver);
     }
     //TODO fill blank methods
-    public void searchArticle(String articleName){}
+    public void searchArticle(String articleName){
+        waitForElement(searchTxtField);
+        searchTxtField.sendKeys(articleName);
+    }
 
-    public MultiLanguageArticlePage openMultiLanguageArticle(String articleName) throws Exception {
+    public MultiLanguageArticlePage searchMultiLanguageArticle(String articleName) throws Exception {
+        searchArticle(articleName);
+        //Thread.sleep(4000);
         waitForElements(searchResults);
         while (i < searchResults.size()) {
-            if (searchResults.get(i).getText().toLowerCase() == articleName.toLowerCase()) {
-                searchResults.get(0).click();
-                break;
+            System.out.println(searchResults.get(i).getText());
+            if (searchResults.get(i).getText().toLowerCase().equals(articleName.toLowerCase())) {
+                searchResults.get(i).click();
+                return new MultiLanguageArticlePage(driver);
             } else {
                 i++;
             }
         }
-        if (i == searchResults.size()) {
-            throw new Exception("iOS article was not found");
+        throw new Exception(articleName + " was not found");
         }
-        return new MultiLanguageArticlePage(driver);
-    }
 }

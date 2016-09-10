@@ -24,6 +24,9 @@ public class HomePage extends BasePage {
     @AndroidFindBy(id = "org.wikipedia:id/view_featured_article_card_article_title")
     private MobileElement featuredArticleTitle;
 
+    @AndroidFindBy(id = "org.wikipedia:id/search_container")
+    private MobileElement searchBox;
+
     public HomePage(AppiumDriver driver){
             super(driver);
     }
@@ -47,5 +50,11 @@ public class HomePage extends BasePage {
         Thread.sleep(1000);
         waitForElement(featuredArticleTitle);
         return returnText(featuredArticleTitle);
+    }
+
+    public SearchPage opeanSearchPage(){
+        waitForElement(searchBox);
+        searchBox.click();
+        return new SearchPage(driver);
     }
 }
