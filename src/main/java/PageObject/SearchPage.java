@@ -32,7 +32,6 @@ public class SearchPage extends BasePage {
         //Thread.sleep(4000);
         waitForElements(searchResults);
         while (i < searchResults.size()) {
-            System.out.println(searchResults.get(i).getText());
             if (searchResults.get(i).getText().toLowerCase().equals(articleName.toLowerCase())) {
                 searchResults.get(i).click();
                 return new MultiLanguageArticlePage(driver);

@@ -12,9 +12,6 @@ public class ArticleBasePage extends BasePage {
     @AndroidFindBy(id = "org.wikipedia:id/view_article_menu_bar_bookmark")
     private MobileElement bookmarkBtn;
 
-    @AndroidFindBy(id = "org.wikipedia:id/view_article_menu_bar_share")
-    private MobileElement shareBtn;
-
     @AndroidFindBy(id = "org.wikipedia:id/floating_toc_button")
     private MobileElement tableOfContentBtn;
 

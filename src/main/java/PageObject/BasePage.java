@@ -70,7 +70,8 @@ public abstract class BasePage {
     protected void takeScreenShot(){
         driver.getScreenshotAs(OutputType.BASE64);
     }
-    private void back(){driver.navigate().back();}
+
+    public void back(){driver.navigate().back();}
 
     protected boolean isElementPresent(By by) {
         try {
@@ -120,5 +121,14 @@ public abstract class BasePage {
             e.printStackTrace();
         }
     }
+    public boolean isPresent(MobileElement element){
+        try {
+            element.isDisplayed();
+        } catch (org.openqa.selenium.NoSuchElementException e){
+            return false;
+        }
+        return true;
+    }
+
 
 }

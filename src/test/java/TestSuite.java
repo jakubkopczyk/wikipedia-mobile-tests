@@ -29,5 +29,40 @@ public class TestSuite extends TestBuilder {
         multiLanguageArticlePage = new MultiLanguageArticlePage(driver);
         Assert.assertThat(multiLanguageArticlePage.returnArticleHeader().toLowerCase(),CoreMatchers.containsString("ios"));
     }
+    @Test
+    public void test03_openHyperlinkInSpecificArticle() throws Exception {
+        homePage = new HomePage(driver);
+        homePage.opeanSearchPage();
+        searchPage = new SearchPage(driver);
+        searchPage.searchMultiLanguageArticle("iOS");
+        multiLanguageArticlePage = new MultiLanguageArticlePage(driver);
+        multiLanguageArticlePage.openLinkToArticlePreview();
+        Assert.assertThat(multiLanguageArticlePage.returnArticlePreviewTitle().toLowerCase(),CoreMatchers.containsString("mobile operating system"));
+    }
+    @Test
+    public void test04_addArticleToReadingList() throws Exception {
+        homePage = new HomePage(driver);
+        homePage.opeanSearchPage();
+        searchPage = new SearchPage(driver);
+        searchPage.searchMultiLanguageArticle("iOS");
+        multiLanguageArticlePage = new MultiLanguageArticlePage(driver);
+        multiLanguageArticlePage.addArticleToReadingList();
+    }
+
+    @Test
+    public void test05_addArticleToExistingReadingList() throws Exception {
+        homePage = new HomePage(driver);
+        homePage.opeanSearchPage();
+        searchPage = new SearchPage(driver);
+        searchPage.searchMultiLanguageArticle("iOS");
+        multiLanguageArticlePage = new MultiLanguageArticlePage(driver);
+        multiLanguageArticlePage.addArticleToReadingList();
+        multiLanguageArticlePage.back();
+        homePage.opeanSearchPage();
+        searchPage = new SearchPage(driver);
+        searchPage.searchMultiLanguageArticle("android");
+        multiLanguageArticlePage = new MultiLanguageArticlePage(driver);
+        multiLanguageArticlePage.addArticleToReadingList();
+    }
 
 }
