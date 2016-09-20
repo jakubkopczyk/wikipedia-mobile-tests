@@ -2,7 +2,10 @@ package PageObject;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.AndroidFindAll;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+
+import java.util.List;
 
 public class HomePage extends BasePage {
 
@@ -14,6 +17,12 @@ public class HomePage extends BasePage {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='In the news']")
     private MobileElement newsSectionTitle;
+
+    @AndroidFindAll(@AndroidFindBy(id = "org.wikipedia:id/horizontal_scroll_list_item_image"))
+    private List<MobileElement> newsImagesList;
+
+    @AndroidFindAll(@AndroidFindBy(id = "org.wikipedia:id/horizontal_scroll_list_item_text"))
+    private List<MobileElement> newsTxtList;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Featured article']")
     private MobileElement featuredArticleSectionTitle;
@@ -36,7 +45,14 @@ public class HomePage extends BasePage {
         menuBtn.click();
         return new SideMenu(driver);
     }
-    public void openFirstNews(){}
+    public String returnFirstNewsTxt(){
+        waitForElements(newsTxtList);
+        return returnText(newsTxtList.get(0));
+    }
+    public void openFirstNews(){
+        waitForElements(newsImagesList);
+        newsImagesList.get(0).click();
+    }
     public MultiLanguageArticlePage openFirstFeaturedArticle() {
         waitForElement(featuredArticleTitle);
         featuredArticleTitle.click();
@@ -50,6 +66,9 @@ public class HomePage extends BasePage {
         Thread.sleep(1000);
         waitForElement(featuredArticleTitle);
         return returnText(featuredArticleTitle);
+    }
+    public String returnPageTitle(){
+        return returnText(pageTitle);
     }
 
     public SearchPage opeanSearchPage(){

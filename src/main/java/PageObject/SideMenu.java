@@ -34,10 +34,45 @@ public class SideMenu extends BasePage {
         super(driver);
     }
 
-    public void openHistory(){}
-    public void openReadingLists(){}
-    public void openNearby(){}
-    public void openRandomArticle(){}
+    public void openHistory(){
+        waitForElement(historyBtn);
+        historyBtn.click();
+        //TODO return HistoryPage
+    }
+
+    public void openReadingLists(){
+        waitForElement(readingListsBtn);
+        readingListsBtn.click();
+        //TODO return ReadingListPage
+    }
+
+    public void openNearby(){
+        waitForElement(nearbyBtn);
+        nearbyBtn.click();
+        //TODO return NearbyPage
+    }
+
+    public void openRandomArticle(){
+        waitForElement(randomBtn);
+        randomBtn.click();
+        //TODO return ArticlePage or MultiLanguageArticlePage
+    }
+
+    public String returnHistoryBtnTitle(){
+        return returnText(historyBtn);
+    }
+
+    public String returnReadingListBtnTitle(){
+        return returnText(readingListsBtn);
+    }
+
+    public String returnNearbyBtnTitle(){
+        return returnText(nearbyBtn);
+    }
+
+    public String returnRandomBtnTitle(){
+        return returnText(randomBtn);
+    }
 
 
 }
