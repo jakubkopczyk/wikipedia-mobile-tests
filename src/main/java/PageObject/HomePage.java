@@ -24,6 +24,9 @@ public class HomePage extends BasePage {
     @AndroidFindAll(@AndroidFindBy(id = "org.wikipedia:id/horizontal_scroll_list_item_text"))
     private List<MobileElement> newsTxtList;
 
+    @AndroidFindAll(@AndroidFindBy(id = "org.wikipedia:id/view_list_card_item_title"))
+    private List<MobileElement> trendingArticlesTitlesList;
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Featured article']")
     private MobileElement featuredArticleSectionTitle;
 
@@ -58,7 +61,18 @@ public class HomePage extends BasePage {
         featuredArticleTitle.click();
         return new MultiLanguageArticlePage(driver);
     }
-    public void openFirstTrendingArticle(){}
+    public MultiLanguageArticlePage openFirstTrendingArticle(){
+        swipe(Swipe_directions.BOTTOM);
+        swipe(Swipe_directions.BOTTOM);
+        waitForElements(trendingArticlesTitlesList);
+        trendingArticlesTitlesList.get(0).click();
+        return new MultiLanguageArticlePage(driver);
+    }
+    public String returnTrendingArticleTitle(){
+        swipe(Swipe_directions.BOTTOM);
+        waitForElements(trendingArticlesTitlesList);
+        return returnText(trendingArticlesTitlesList.get(0));
+    }
 
     public String returnFeaturedArticleTitle() throws InterruptedException {
         waitForElement(pageTitle);

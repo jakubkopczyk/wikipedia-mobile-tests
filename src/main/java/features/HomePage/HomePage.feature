@@ -14,10 +14,10 @@ Feature: Test the entire app
       When I open first news
       Then News with same title is opened
 
-    #Scenario: Open Trending Article
-     # Given I am on Home Page
-     # When I tap on first Trending article
-     # Then Trending article with same title is opened
+    Scenario: Open Trending Article
+      Given I am on Home Page
+      When I tap on first Trending article
+     Then Trending article with same title is opened
 
    Scenario: Open Side menu
       Given I am on Home Page

@@ -10,8 +10,6 @@ import io.appium.java_client.AppiumDriver;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 
-import static PageObject.BasePage.driver;
-
 public class StepsDef extends Capabilities {
 
     HomePage homePage;
@@ -19,6 +17,7 @@ public class StepsDef extends Capabilities {
     SideMenu sideMenu;
     NewsPage newsPage;
     static String articleTitle;
+    static String trendingArticleTitle;
     static String newsTxt;
 
     @After
@@ -91,5 +90,18 @@ public class StepsDef extends Capabilities {
         newsPage = new NewsPage(driver);
         Assert.assertThat(newsPage.returnNewsTitle(),CoreMatchers.is(newsTxt));
         newsPage.back();
+    }
+
+    @When("^I tap on first Trending article$")
+    public void iTapOnFirstTrendingArticle() throws Throwable {
+        homePage = new HomePage(driver);
+        trendingArticleTitle = homePage.returnTrendingArticleTitle();
+        homePage.openFirstTrendingArticle();
+    }
+
+    @Then("^Trending article with same title is opened$")
+    public void trendingArticleWithSameTitleIsOpened() throws Throwable {
+        multiLanguageArticlePage = new MultiLanguageArticlePage(driver);
+        Assert.assertThat(multiLanguageArticlePage.returnArticleHeader(), CoreMatchers.containsString(articleTitle));
     }
 }
