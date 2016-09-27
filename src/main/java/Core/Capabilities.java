@@ -16,6 +16,7 @@ public class Capabilities {
     // installed app details
     final static String appPackage = "org.wikipedia";
     final static String appActivity = "org.wikipedia.MainActivity";
+    private static final String TESTOBJECT = "http://appium.testobject.com/wd/hub";
 
 
     public static void deviceCapabilities() throws Exception
@@ -30,9 +31,13 @@ public class Capabilities {
         capabilities.setCapability("autoLaunch", "false");
         capabilities.setCapability("appPackage", appPackage);
         capabilities.setCapability("appActivity", appActivity);
+        capabilities.setCapability("testobject_api_key", System.getenv("TESTOBJECT_API_KEY"));
+        capabilities.setCapability("testobject_app_id", "1");
+        capabilities.setCapability("testobject_device", "LG_Nexus_5X_real");
+
         try
         {
-            driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+            driver = new AndroidDriver(new URL(TESTOBJECT), capabilities);
             driver.launchApp();
             wait = new WebDriverWait(driver, 60);
         }
