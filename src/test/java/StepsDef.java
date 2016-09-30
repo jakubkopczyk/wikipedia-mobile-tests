@@ -1,12 +1,12 @@
 import Core.Capabilities;
-import PageObject.*;
-import cucumber.api.PendingException;
+import PageObject.HomePage;
+import PageObject.MultiLanguageArticlePage;
+import PageObject.NewsPage;
+import PageObject.SideMenu;
+import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
-import io.appium.java_client.AppiumDriver;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 
@@ -102,6 +102,6 @@ public class StepsDef extends Capabilities {
     @Then("^Trending article with same title is opened$")
     public void trendingArticleWithSameTitleIsOpened() throws Throwable {
         multiLanguageArticlePage = new MultiLanguageArticlePage(driver);
-        Assert.assertThat(multiLanguageArticlePage.returnArticleHeader(), CoreMatchers.containsString(articleTitle));
+        Assert.assertThat(multiLanguageArticlePage.returnArticleHeader(), CoreMatchers.containsString(trendingArticleTitle));
     }
 }

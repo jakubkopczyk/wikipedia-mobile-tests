@@ -62,8 +62,6 @@ public class HomePage extends BasePage {
         return new MultiLanguageArticlePage(driver);
     }
     public MultiLanguageArticlePage openFirstTrendingArticle(){
-        swipe(Swipe_directions.BOTTOM);
-        swipe(Swipe_directions.BOTTOM);
         waitForElements(trendingArticlesTitlesList);
         trendingArticlesTitlesList.get(0).click();
         return new MultiLanguageArticlePage(driver);
